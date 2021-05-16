@@ -37,7 +37,7 @@ if ($search) {
     $stmt = $pdo->prepare("SELECT emp_task.STATUS,dept_proj.dnum,project.title as project,tnumber,task.title 
                         as task,task.description,task.date_start,task.deadline FROM task JOIN project ON 
                         pnumber = task.pnum JOIN dept_proj ON dept_proj.pnum = pnumber JOIN emp_task ON 
-                        emp_task.tnum = tnumber WHERE dept_proj.dnum LIKE :search OR project LIKE :search");
+                        emp_task.tnum = tnumber WHERE dept_proj.dnum LIKE :search OR project.title LIKE :search");
     $stmt->bindValue(":search", "%$search%");
     $stmt->execute();
     $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
