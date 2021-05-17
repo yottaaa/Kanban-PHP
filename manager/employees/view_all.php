@@ -33,6 +33,20 @@ $stmt->bindValue(":date", date("Y-m-d"));
 $stmt->execute();
 $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+$search = $_GET['search'] ?? '';
+if ($search) {
+    $stmt = $pdo->prepare("SELECT emp_id,CONCAT(fname,' ',mi,'. ',lname) as name,sex,address,salary,contact_no,time,
+                        IF(active = 1,'ACTIVE', 'NOT ACTIVE') as active FROM employee JOIN employee_logs 
+                        ON emp_id = e_id WHERE dnum = :dept AND employee_logs.date = :date 
+                        AND emp_id LIKE :search ORDER BY time DESC");
+    $stmt->bindValue(":dept", $_SESSION['dept']);
+    $stmt->bindValue(":date", date("Y-m-d"));
+    $stmt->bindValue(":search", "%$search%");
+    $stmt->execute();
+    $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+}
+
 ?>
 
 <?php include_once '../../components/base/top.php';?>
@@ -41,7 +55,16 @@ $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <?php include_once '../../components/sidebar.php';?>
 
-<h1 class="mb-5">Employee Logs</h1>
+<h1>Employee Logs</h1>
+
+<div class="mb-3 mt-4">
+    <form>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search Employee ID" name="search">
+            <button class="btn btn-primary" type="submit" >Search</button>
+        </div>
+    </form>
+</div> 
 
 <div class="mt-5 mb-2">Date: <?php echo date("F j, Y");?></div>
 
