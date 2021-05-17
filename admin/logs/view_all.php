@@ -26,8 +26,8 @@ $attributes = ["ID","Name","Dept. ID","Time","Active"];
 $id = $_SESSION['user_id'];
 
 $stmt = $pdo->prepare("SELECT emp_id,CONCAT(fname,' ',mi,'. ',lname) as name,dnum,time,
-                    IF(active = 1,'ACTIVE', 'NOT ACTIVE') as active FROM employee JOIN employee_logs 
-                    ON emp_id = e_id WHERE employee_logs.date = :date ORDER BY time DESC");
+IF(active = 1,'ACTIVE', 'NOT ACTIVE') as active FROM employee JOIN employee_logs 
+ON emp_id = e_id WHERE employee_logs.date = :date ORDER BY time DESC");
 $stmt->bindValue(":date", date("Y-m-d"));
 $stmt->execute();
 $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -36,8 +36,7 @@ $search = $_GET['search'] ?? '';
 if ($search) {
     $stmt = $pdo->prepare("SELECT emp_id,CONCAT(fname,' ',mi,'. ',lname) as name,dnum,time,
                         IF(active = 1,'ACTIVE', 'NOT ACTIVE') as active FROM employee JOIN employee_logs 
-                        ON emp_id = e_id WHERE employee_logs.date = :date AND emp_id 
-                        LIKE :search OR CONCAT(fname,' ',mi,'. ',lname) LIKE :search ORDER BY time DESC");
+                        ON emp_id = e_id WHERE date = :date AND emp_id LIKE :search ORDER BY time DESC");
     $stmt->bindValue(":date", date("Y-m-d"));
     $stmt->bindValue(":search", "%$search%");
     $stmt->execute();
@@ -58,7 +57,7 @@ if ($search) {
 <div class="mb-3 mt-4">
     <form>
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search Employee ID or Name" name="search">
+            <input type="text" class="form-control" placeholder="Search Employee ID" name="search">
             <button class="btn btn-primary" type="submit" >Search</button>
         </div>
     </form>
