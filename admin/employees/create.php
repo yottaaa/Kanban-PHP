@@ -30,6 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (empty($data['emp_id'])) {
         $errors[] = "Error: Empty input in ID";
     }
+    if (strlen($data['emp_id']) != 7) {
+        $errors[] = "Error: Employee ID should be 7 characters";
+    }
     if (empty($data['pass'])) {
         $errors[] = "Error: Empty input in password";
     }
@@ -105,7 +108,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <form action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">Employee ID</label>
-                <input type="text" class="form-control" name="emp_id" value="<?php echo $data['emp_id'];?>">
+                <input type="text" class="form-control" name="emp_id" 
+                value="<?php echo $data['emp_id'];?>" placeholder="Enter 7 characters">
             </div>
             <div class="mb-3">
                 <label class="form-label">Password</label>
