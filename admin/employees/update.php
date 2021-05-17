@@ -101,7 +101,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <form action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">Employee ID</label>
-                <input type="text" class="form-control" name="emp_id" value="<?php echo $data['emp_id'];?>">
+                <input type="text" class="form-control" name="emp_id" 
+                value="<?php echo $data['emp_id'];?>" placeholder="Enter 7 characters">
             </div>
             <div class="mb-3">
                 <label class="form-label">Employee Pass</label>
