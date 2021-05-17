@@ -36,6 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     if (empty($errors)) {
         // update department
+        $stmt = $pdo->prepare("UPDATE department SET Mgr_id = NULL
+                                WHERE Mgr_id = :mgr");
+        $stmt->bindValue(":mgr", $_POST['Mgr_id']);
+        $stmt->execute();
+
         $stmt = $pdo->prepare("UPDATE department SET dnumber = :dnumber,
                                 dname = :dname, dlocation = :dlocation, Mgr_id = :mgr
                                 WHERE dnumber = :id");
