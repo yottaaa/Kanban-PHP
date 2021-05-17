@@ -33,6 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (empty($data['emp_id'])) {
         $errors[] = "Error: Empty input in ID";
     }
+    if (strlen($data['emp_id']) != 7) {
+        $errors[] = "Error: Employee ID should be 7 characters";
+    }
     if (empty($data['pass'])) {
         $errors[] = "Error: Empty input in password";
     }
