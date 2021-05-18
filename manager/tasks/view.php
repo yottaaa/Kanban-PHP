@@ -20,13 +20,6 @@ $stmt->bindValue(":id", $id);
 $stmt->execute();
 $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// // get the assigned employee
-// $stmt = $pdo->prepare("SELECT emp_id, CONCAT(fname, ' ', mi, '. ', lname) as name FROM employee 
-//                      WHERE emp_id = :");
-// $stmt->bindValue(":tnumber", $data['tnumber']);
-// $stmt->execute();
-// $assigned = $stmt->fetch(PDO::FETCH_ASSOC);
-
 ?>
 
 <?php include_once '../../components/base/top.php';?>
