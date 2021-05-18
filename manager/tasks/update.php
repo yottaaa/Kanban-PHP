@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <div class="container">
     <div class="col-6 mx-auto mt-4 mb-4">
-        <a href="view_all.php?uid=<?php echo $_SESSION['user_id']  . "&dept=" . $_SESSION['dept'];?>">Back</a>
+        <a href="view.php?pid=<?php echo $id;?>">Back</a>
 
         <h1>Update <?php echo $data['title']?></h1>
 
