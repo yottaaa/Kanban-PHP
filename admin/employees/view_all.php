@@ -80,10 +80,7 @@ if ($search) {
                 <td><?php echo $data['dnum'];?></td>
                 <td>
                     <a href="update.php?id=<?php echo $data['emp_id'];?>" class="btn btn-warning btn-sm">Edit</a>
-                    <form action="delete.php" method="post" style="display: inline-block;">
-                        <input type="hidden" name="id" value="<?php echo $data['emp_id'];?>">
-                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                    </form>
+                    <a href="delete.php?id=<?php echo $data['emp_id'];?>" class="btn btn-danger btn-sm">Delete</a>
                 </td>
             </tr>
         <?php endforeach;?>  
