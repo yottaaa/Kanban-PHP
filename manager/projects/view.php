@@ -55,10 +55,7 @@ $members = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="row mt-4 mb-4 px-3">
             <a href="update.php?id=<?php echo $data['pnumber'];?>" class="col-6 btn btn-warning btn-sm">Edit</a>
-            <form action="delete.php" method="post" class="col-6">
-                <input type="hidden" name="id" value="<?php echo $data['pnumber'];?>">
-                <button type="submit" class="col-12 btn btn-danger btn-sm">Delete</button>
-            </form>
+            <a href="delete.php?id=<?php echo $data['pnumber'];?>" class="col-6 btn btn-danger btn-sm">Delete</a>
         </div>
         
     </div>
