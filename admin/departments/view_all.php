@@ -71,10 +71,7 @@ if ($search) {
             <?php if ($actions):?>
             <td>
                 <a href="update.php?id=<?php echo $data['dnumber'];?>" class="btn btn-warning btn-sm">Edit</a>
-                <form action="delete.php" method="post" style="display: inline-block;">
-                    <input type="hidden" name="id" value="<?php echo $data['dnumber'];?>">
-                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                </form>
+                <a href="delete.php?id=<?php echo $data['dnumber'];?>" class="btn btn-danger btn-sm">Delete</a>
             </td>
             <?php endif;?>
         </tr>
